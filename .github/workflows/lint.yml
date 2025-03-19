@@ -16,11 +16,12 @@ jobs:
       - name: Extract Ticket
         run: |
           PR_NUM=$(echo '${{ github.event.pull_request.title }}' | grep -P "PAX-I[0-9]+" | head -n 1)
+          echo "For debugging: ${{ github.event.pull_request.body }}"
           echo "PR_NUMBER=#$PR_NUM" >> $GITHUB_ENV
         shell: bash
       - name: Update PR Description
         uses: nefrob/pr-description@v1.2.0
         if: ${{ !contains(github.event.pull_request.body, env.PR_NUMBER) }}
         with:
-            content: "#${{ env.PR_NUMBER }}"
+            content: "${{ env.PR_NUMBER }}"
             token: ${{ secrets.GITHUB_TOKEN }}
