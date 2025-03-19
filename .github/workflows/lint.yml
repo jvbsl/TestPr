@@ -26,7 +26,7 @@ jobs:
             const pr = context.payload.pull_request;
             const paxReference = "${{ env.PR_NUMBER }}";
 
-            const body = `${pr.body}\n\n${paxReference}`;
+            const body = pr.body ? `${pr.body}\n\n${paxReference}` : paxReference;
             
             await github.rest.pulls.update({
               owner: context.repo.owner,
