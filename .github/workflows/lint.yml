@@ -15,8 +15,7 @@ jobs:
     steps:
       - name: Extract Ticket
         run: |
-          PR_NUM=$(echo '${{ github.event.pull_request.title }}' | grep -P "PAX-I[0-9]+" | head -n 1)
-          echo "For debugging: ${{ github.event.pull_request.body }}"
+          PR_NUM=$(echo '${{ github.event.pull_request.title }}' | grep -o -P "PAX-I[0-9]+" | head -n 1)
           echo "PR_NUMBER=#$PR_NUM" >> $GITHUB_ENV
         shell: bash
       - name: Update PR Description
