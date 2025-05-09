@@ -13,6 +13,17 @@ jobs:
     # Also don't run on pull requests from dependabot
     if: startsWith(github.head_ref, 'deploy/v') == false && startsWith(github.actor, 'dependabot') == false
     steps:
+      - name: Check PR
+        uses: jvbsl/pr-lint-action@feature/body-regex
+        with:
+          title-regex: '\[#PAX-I\d+\]\s*(\w+\W+){2,}'
+          on-failed-title-comment: "Your pull request must have a meaningful title and contain the ticket e.g. [#PAX-I1234]."
+          body-regex: '(\w+\W+){5,}'
+          on-failed-body-comment: "Your pull request must have a meaningful description."
+          on-failed-regex-fail-action: false
+          on-failed-regex-create-review: true
+          on-failed-regex-request-changes: false
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Extract Ticket
         run: |
           PR_NUM=$(echo ${{ toJSON(github.event.pull_request.title) }} | grep -o -P "PAX-I[0-9]+" | head -n 1)
