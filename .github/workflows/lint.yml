@@ -17,12 +17,15 @@ jobs:
         uses: jvbsl/pr-lint-action@feature/body-regex
         with:
           title-regex: '\[#PAX-I\d+\]\s*(\w+\W+){2,}'
-          on-failed-title-comment: "Your pull request must have a meaningful title and contain the ticket e.g. [#PAX-I1234]."
+          on-failed-regex-comment: "Your pull request must have a meaningful title and contain the ticket e.g. [#PAX-I1234]."
           body-regex: '(\w+\W+){5,}'
-          on-failed-body-comment: "Your pull request must have a meaningful description."
+          on-failed-body-regex-comment: "Your pull request must have a meaningful description."
           on-failed-regex-fail-action: false
           on-failed-regex-create-review: true
           on-failed-regex-request-changes: false
+          on-failed-body-regex-fail-action: false
+          on-failed-body-regex-create-review: true
+          on-failed-body-regex-request-changes: false
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Extract Ticket
         run: |
