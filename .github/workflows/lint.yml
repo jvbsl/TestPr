@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Extract Ticket
         run: |
-          PR_NUM=$(echo '${{ github.event.pull_request.title }}' | grep -o -P "PAX-I[0-9]+" | head -n 1)
+          PR_NUM=$(echo ${{ toJSON(github.event.pull_request.title) }} | grep -o -P "PAX-I[0-9]+" | head -n 1)
           echo "PR_NUMBER=#$PR_NUM" >> $GITHUB_ENV
         shell: bash
       - name: Add PAX Reference
