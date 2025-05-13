@@ -25,7 +25,7 @@ jobs:
           on-failed-regex-request-changes: false
           on-failed-body-regex-fail-action: false
           on-failed-body-regex-create-review: false
-          on-failed-body-regex-request-changes: true
+          on-failed-body-regex-request-changes: false
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Extract Ticket
         run: |
