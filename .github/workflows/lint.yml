@@ -20,11 +20,11 @@ jobs:
           on-failed-regex-comment: "Your pull request must have a meaningful title and contain the ticket e.g. [#PAX-I1234]."
           body-regex: '(\w+\W+){5,}'
           on-failed-body-regex-comment: "Your pull request must have a meaningful description."
-          on-failed-regex-fail-action: false
-          on-failed-regex-create-review: true
+          on-failed-regex-fail-action: true
+          on-failed-regex-create-review: false
           on-failed-regex-request-changes: false
           on-failed-body-regex-fail-action: false
-          on-failed-body-regex-create-review: true
+          on-failed-body-regex-create-review: false
           on-failed-body-regex-request-changes: false
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Extract Ticket
