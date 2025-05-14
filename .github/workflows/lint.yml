@@ -21,11 +21,11 @@ jobs:
           body-regex: '(\w+\W+){5,}'
           on-failed-body-regex-comment: "Your pull request must have a meaningful description."
           on-failed-regex-fail-action: false
-          on-failed-regex-create-review: true
+          on-failed-regex-create-review: false
           on-failed-regex-request-changes: true
           on-failed-body-regex-fail-action: false
           on-failed-body-regex-create-review: false
-          on-failed-body-regex-request-changes: false
+          on-failed-body-regex-request-changes: true
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Extract Ticket
         run: |
