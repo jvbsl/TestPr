@@ -22,7 +22,7 @@ jobs:
           on-failed-body-regex-comment: "Your pull request must have a meaningful description."
           on-failed-regex-fail-action: false
           on-failed-regex-create-review: true
-          on-failed-regex-request-changes: false
+          on-failed-regex-request-changes: true
           on-failed-body-regex-fail-action: false
           on-failed-body-regex-create-review: false
           on-failed-body-regex-request-changes: false
