@@ -26,7 +26,6 @@ jobs:
             $ref = "origin/${{ github.base_ref }}"
           } elseif($github_basesha){
             $ref = $github_basesha
-          }
           }elseif($github_ref){
             $ref = $github_ref
           }else{
