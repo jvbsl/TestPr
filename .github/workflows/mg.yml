@@ -2,9 +2,10 @@ name: Check Diff
 on:
   pull_request:
   merge_group:
-
+  push:
+  workflow_dispatch:
 jobs:
-  pr-lint:
+  checkdiff:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
