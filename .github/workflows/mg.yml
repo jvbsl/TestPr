@@ -1,7 +1,7 @@
 name: Check Diff
 on:
-  - pull_request
-  - merge_group
+  pull_request:
+  merge_group:
 
 jobs:
   pr-lint:
