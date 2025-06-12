@@ -1,0 +1,38 @@
+name: Check Diff
+on:
+  - pull_request
+  - merge_group
+
+jobs:
+  pr-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: false # Restore LFS data from cache
+          fetch-depth: 0
+      - name: Check if Main build should run
+        id: check_main
+        shell: pwsh
+        run: |
+
+          $base_ref = "${{ github.base_ref }}";
+          $github_ref = "${{ github.ref }}";
+
+          if($base_ref){
+            $ref = "origin/${{ github.base_ref }}"
+          }elseif($github_ref){
+            $ref = $github_ref
+          }else{
+            echo "main_changed=True" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+          echo "Diff $ref..HEAD"
+          $diff = git diff --name-only "$ref...HEAD"
+
+          $SourceDiff = $diff | Where-Object { $_ -match '^[sS]ub/' -or $_ -match '.cs$' -or $_ -match '^[bB]uild/' -or $_ -match '^[lL]ibs/' }
+          $HasDiff = $SourceDiff.Length -gt 0
+
+          echo "main_changed=$HasDiff" >> $env:GITHUB_OUTPUT
+          echo "main_changed=$HasDiff"
