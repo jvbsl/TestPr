@@ -22,7 +22,7 @@ jobs:
           $github_ref = "${{ github.ref }}";
           $github_basesha = "${{ github.event.pull_request.base.sha }}";
           $mg_headRef = "${{ github.event.merge_group.head_ref }}"
-          $mg_baseRef = "${{ github.event.merge_group.base.sha }}"
+          $mg_baseRef = "${{ github.event.merge_group.base_sha }}"
           if($base_ref){
             $ref = "origin/${{ github.base_ref }}"
           } elseif($github_basesha){
